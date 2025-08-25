@@ -1,0 +1,22 @@
+// {
+//   "lines": {
+//     "red": [ "Davis", "Harvard", "Kendall", "Park", "Downtown Crossing",
+//              "South Station", "Broadway", "Andrew", "JFK" ],
+//     "green": [ "Tufts", "East Somerville", "Lechmere", "North Station",
+//       "Government Center", "Park", "Boylston", "Arlington", "Copley" ]
+//   },
+//   "trips": {
+//     "Bob": [ "Park", "Tufts" ],
+//     "Alice": [ "Davis", "Kendall" ]
+//   }
+// }
+{
+  "lines": {
+    "red": [ "Copley", "Diver", "Park", "Diversion", "Lechmere", "Dive", "Tufts" ],
+    "green": [ "Tufts", "Lechmere", "Park", "Copley" ]
+  },
+  "trips": {
+    "Bob": [ "Park", "Tufts" ],
+    "Alice": [ "Tufts", "Park" ]
+  }
+}

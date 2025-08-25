@@ -1,0 +1,38 @@
+
+============================ Top level overview: ============================
+Each passenger has a thread.
+Each train has a thread.
+
+All state fields are ConcurrentHashMaps stored in the MBTA instance.
+
+There are two states that multiple threads can try to edit the same entry at the same time. For these I use synchronize on the station (corresponding to the entry) to ensure states stay valid and are changed by one thread at a time.
+
+When two locks are needed, they are always taken in the same order.
+
+I synchronize on station objects.
+
+Passenger cases:
+Case 1 - at destination -> kill thread.
+Case 2 - On train 1, no train at next stop -> wait.
+Case 3 - On train 1, train 1 at next stop -> deboard.
+Case 4 - On train 1, train 2 at next stop -> wait.
+Case 5 - At station, no train at station -> wait.
+Case 6 - At station, wrong train at station -> wait.
+Case 7 - At station, right train at station -> board.
+
+Train cases: 
+Case 1 - next station is occupied -> wait().
+Case 2 - next station is free -> move and notify on both stations. Check dir.
+
+============================ Detailed: ============================
+All state fields are ConcurrentHashMaps stored in the MBTA instance that every file refers to. This allows for reads without locks, and also writes when guaranteed to not interfere (e.g. a passenger thread is the only one accessing map.put(passenger, _) ).
+
+There are two states that multiple threads can try to edit the same entry at the same time - where I map stations to trains present there, and where I map trains to passengers on board. For these I use synchronize to lock them before reading and writing (all events require writing to these). 
+
+Trains always synchronize twice when moving - on their current stations, and also a second synchronize on the next station. 
+These syncs are done in order from which station is closer to the start of line, to prevent a deadlock risk. If the next station is occupied, they nextStation.wait().
+Trains notifyAll() when arriving and leaving a station to trigger waiting passengers to board/deboard, and waiting trains to move.
+Train threads sleep for 10ms after each move event, releasing all locks during this time.
+
+Passengers sync on a station when checking whether to board/deboard, with a wait if they can't board/deboard, or maintain the lock until they board/deboard if it is necessary. This prevents trains from arriving/leaving a station during checking/boarding/deboarding, and allows them to finish boarding/deboarding and update all states before another passenger can get the lock to edit the same states.
+When actually boarding or deboarding, passenger threads edit the list of passengers for that train, but the lock on that station prevents race conditions between passenger threads, and prevents from the train from moving that could result in invalid logs.

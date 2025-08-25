@@ -1,0 +1,60 @@
+{
+  "lines": {
+    "red": [ "Davis", "Harvard", "Kendall", "Park", "Downtown Crossing",
+             "South Station", "Broadway", "Andrew", "JFK" ],
+    "orange": [ "Ruggles", "Back Bay", "Tufts Medical Center", "Chinatown",
+      "Downtown Crossing", "State", "North Station",  "Sullivan" ],
+    "green": [ "Tufts", "East Somerville", "Lechmere", "North Station",
+      "Government Center", "Park", "Boylston", "Arlington", "Copley" ],
+    "blue": [ "Bowdoin", "State", "Aquarium",
+      "Maverick", "Airport" ]
+  },
+  "trips": {
+    "Bob": [ "Park", "Tufts" ],
+    "Alice": [ "Davis", "Kendall" ],
+      "Carol": [ "Maverick", "State", "Downtown Crossing", "Park", "Tufts" ]
+  }
+}
+
+// {
+//   "lines": {
+//     "red": [ "Davis", "Harvard", "Kendall", "Park", "Downtown Crossing", "South Station", "Broadway", "Andrew", "JFK" ],
+//     "orange": [ "Ruggles", "Back Bay", "Tufts Medical Center", "Chinatown", "Downtown Crossing", "State", "North Station", "Sullivan" ],
+//     "green": [ "Tufts", "East Somerville", "Lechmere", "North Station", "Government Center", "Park", "Boylston", "Arlington", "Copley" ],
+//     "blue": [ "Bowdoin",  "Government Center", "State", "Aquarium", "Maverick", "Airport" ]
+//   },
+//   "trips": {
+//     "Alice": [ "Davis", "Kendall" ],
+//     "Bob": [ "Park", "Tufts" ],
+//     "Carol": [ "Maverick", "Government Center", "Tufts" ]
+//   }
+// }
+
+// {
+//   "lines": {
+//     "red": [ "Davis", "Harvard", "Kendall", "Park", "Downtown Crossing", "South Station", "Broadway", "Andrew", "JFK" ],
+//     "orange": [ "Ruggles", "Back Bay", "Tufts Medical Center", "Chinatown", "Downtown Crossing", "State", "North Station", "Sullivan", "Alice" ],
+//     "green": [ "Tufts", "East Somerville", "Lechmere", "Carol", "North Station", "Government Center", "Park", "Boylston", "Arlington", "Copley" ],
+//     "blue": [ "Bowdoin", "State", "Carol", "Bob", "Aquarium", "Maverick", "Airport", "Government Center" ]
+//   },
+//   "trips": {
+//     "Alice": [ "Davis", "Kendall" ],
+//     "Bob": [ "Park", "Tufts" ],
+//     "Carol": [ "Maverick", "Government Center", "Tufts" ]
+//   }
+// }
+
+// Lines have at least 2 stations.
+// {
+//   "lines": {
+//     "red": [ "D", "C", "A" ],
+//     "blue": [ "A", "B", "D" ],
+//     "green": ["A","C"]
+//   },
+//   "trips": {
+//     "Bob": [ "A", "A" ],
+//     "David": [ "C", "A", "C"],
+//     "Carol": [ "B", "A" ],
+//     "Alice": [ "A", "C" ]
+//   }
+}
